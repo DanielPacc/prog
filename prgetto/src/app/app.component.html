@@ -1,0 +1,15 @@
+<div>
+  <h1>Comunica con il servizio </h1>
+
+
+  <form (submit)="addCar()">
+    <input type="number" [(ngModel)]="Id" >
+    <input type="text" [(ngModel)]="targa" placeholder="quella">
+    <input type="text" [(ngModel)]="marca" placeholder="si">
+    <input type="text" [(ngModel)]="modello" placeholder="bho">
+    <input type="number" [(ngModel)]="costo">
+    <input type="text" [(ngModel)]="info" placeholder="vala">
+    <input type="text" [(ngModel)]="img" placeholder="certissimo">
+    <button type="submit">Aggiungi utente</button>
+  </form>
+</div>
