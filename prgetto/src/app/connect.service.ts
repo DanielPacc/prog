@@ -6,25 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
   
 })
-export class PhpMyAdminService {
-  private baseUrl = 'http://localhost:8001'; // Aggiorna con l'URL di PhpMyAdmin
+export class connect {
+  private baseUrl = 'http://localhost:3306'; 
   database = 'db_ang';
-  tableName = 'autovettura'
+  tableName = 'autovettura';
 
   constructor(private http: HttpClient) { }
 
-  getTableData(database: string, tableName: string): Observable<any[]> {
-    const url = `${this.baseUrl}/${database}/${tableName}`;
+  getTableData(): Observable<any[]> {
+    const url = `${this.baseUrl}/${this.database}/${this.tableName}`;
     return this.http.get<any[]>(url);
   }
 
-  insertData(database: string, tableName: string, data: any): Observable<any> {
-    const url = `${this.baseUrl}/${database}/${tableName}`;
+  insertData(data: any): Observable<any> {
+    const url = `${this.baseUrl}/${this.database}/${this.tableName}`;
     return this.http.post<any>(url, data);
   }
 
-  deleteData(database: string, tableName: string, id: number): Observable<any> {
-    const url = `${this.baseUrl}/${database}/${tableName}/${id}`;
+  deleteData(id: number): Observable<any> {
+    const url = `${this.baseUrl}/${this.database}/${this.tableName}/${id}`;
     return this.http.delete<any>(url);
   }
 }
