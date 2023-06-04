@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PhpMyAdminService } from './connect.service';
+import { connect } from './connect.service';
 
 describe('ConnectService', () => {
-  let service: PhpMyAdminService;
+  let service: connect;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PhpMyAdminService);
+    service = TestBed.inject(connect);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
+
