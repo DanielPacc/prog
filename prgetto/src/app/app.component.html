@@ -1,15 +1,19 @@
+<h2>Comunica con il servizio </h2>
 <div>
-  <h1>Comunica con il servizio </h1>
+  <h1>Comunica con il prefizio </h1>
+  <button (click)="getCars()">Ottieni dati della tabella</button>
+  <ul>
+    <li *ngFor="let user of autovettura">{{ user.id }}</li>
+  </ul>
 
-
-  <form (submit)="addCar()">
-    <input type="number" [(ngModel)]="Id" >
-    <input type="text" [(ngModel)]="targa" placeholder="quella">
-    <input type="text" [(ngModel)]="marca" placeholder="si">
-    <input type="text" [(ngModel)]="modello" placeholder="bho">
-    <input type="number" [(ngModel)]="costo">
-    <input type="text" [(ngModel)]="info" placeholder="vala">
-    <input type="text" [(ngModel)]="img" placeholder="certissimo">
-    <button type="submit">Aggiungi utente</button>
+  <form (submit)="addCar()" action="index.html">
+    <input type="number" [(ngModel)]="id" name="id">
+    <input type="text" [(ngModel)]="targa" name="targa" placeholder="targa">
+    <input type="text" [(ngModel)]="marca" name="marca" placeholder="marca">
+    <input type="text" [(ngModel)]="modello" name="modello" placeholder="modello">
+    <input type="number" [(ngModel)]="costo" name="costo">
+    <input type="text" [(ngModel)]="info" name="info" placeholder="info">
+    <input type="text" [(ngModel)]="img" name="img" placeholder="img">
+    <button type="submit">Aggiungi</button>
   </form>
 </div>
