@@ -1,26 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { PhpMyAdminService } from './connect.service';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { connect } from './connect.service';
+import { FormsModule } from '@angular/forms'; 
+
+//ricorda il file proxy e questa roba
+/*
+{
+    "/echo": {
+    "target": "http://localhost:3306",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+    }
+}
+
+da qua l'angular json
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nome_applicazione:build",
+            "proxyConfig": "src/proxy.conf.json"
+*/
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, FormsModule {
   autovettura: any[] | undefined;
-  Id: number | undefined;
+  id: number | undefined;
   targa: string | undefined;
   marca: string | undefined;
   modello: string | undefined;
   costo: number | undefined;
   info: string | undefined;
   img: string | undefined;
+  title = 'provetta';
 
-  constructor(private phpMyAdminService: PhpMyAdminService) { }
+  constructor(private connect: connect) { }
 
   ngOnInit() {
-    this.Id=-1;
+    this.id=-1;
     this.targa='';
     this.marca='';
     this.modello='';
@@ -30,21 +50,21 @@ export class AppComponent implements OnInit {
   }
 
   getCars() {
-    this.phpMyAdminService.getTableData('db_ang', 'autovettura').subscribe(data => {
+    this.connect.getTableData().subscribe(data => {
       this.autovettura = data;
     });
   }
 
   addCar() {
-    const newcar = {Id: this.Id, targa: this.targa, marca: this.marca, modello: this.modello, costo: this.costo, info: this.info, img: this.img};
-    this.phpMyAdminService.insertData('db_ang', 'autovettura', newcar).subscribe(response => {
+    const newcar = {d: this.id, targa: this.targa, marca: this.marca, modello: this.modello, costo: this.costo, info: this.info, img: this.img};
+    this.connect.insertData(newcar).subscribe(response => {
       console.log('User added successfully.');
       this.getCars();
     });
   }
 
   deleteCar(Id: number) {
-    this.phpMyAdminService.deleteData('db_ang', 'autovettura', Id).subscribe(response => {
+    this.connect.deleteData(Id).subscribe(response => {
       console.log('User deleted successfully.');
       this.getCars();
     });
